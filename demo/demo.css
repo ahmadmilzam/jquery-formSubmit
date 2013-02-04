@@ -1,0 +1,131 @@
+BODY {
+	font: 15px sans-serif;
+	padding: 10px 40px;
+}
+
+FORM {
+	background: #F8F8F8;
+	padding: 30px;
+}
+
+FIELDSET {
+	border: solid 1px #DDD;
+	border-radius: 4px;
+	padding: 20px;
+	margin: 20px 0;
+}
+
+LABEL {
+	margin: 20px 0;
+	display: block;
+}
+
+INPUT[type=text],
+INPUT[type=password],
+INPUT[type=email],
+INPUT[type=search],
+TEXTAREA {
+	height: 24px;
+	vertical-align: middle;
+	-webkit-appearance: none;
+	border: none;
+	background: white;
+	border: solid 1px #CCC;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05);
+	font-size: 15px;
+	padding: 2px 4px;
+	margin: 0;
+	display: inline-block;
+	-moz-transition: .1s all;
+	-ms-transition: .1s all;
+	-webkit-transition: .1s all;
+	transition: .1s all;
+	resize: none;
+}
+
+INPUT[type=text]:focus,
+INPUT[type=password]:focus,
+INPUT[type=email]:focus,
+INPUT[type=search]:focus,
+TEXTAREA:focus {
+	border-color: rgba(0, 102, 153, .4);
+	box-shadow: 0 0 6px rgba(0, 102, 153, .5);
+	outline: none;
+	-moz-transition: .1s all;
+	-ms-transition: .1s all;
+	-webkit-transition: .1s all;
+	transition: .1s all;
+}
+
+INPUT[type=text][disabled],
+INPUT[type=password][disabled],
+INPUT[type=email][disabled],
+INPUT[type=search][disabled],
+TEXTAREA[disabled] {
+	background: #F8F8F8;
+	color: #AAA;
+	box-shadow: none;
+}
+
+.button {
+	font-size: 100%;
+	text-align: center;
+	vertical-align: middle;
+	background: #EEE;
+	line-height: 1;
+	color: #666;
+	border: solid 1px #CCC;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px white;
+	padding: 6px 12px;
+	margin: 0;
+	display: inline-block;
+	min-width: 40px;
+}
+
+.button:hover {
+	background-color: #E2E2E2;
+	border-color: #AAA;
+	color: #444;
+}
+
+.button:active {
+	background-color: #CCC;
+	border-color: #AAA;
+	box-shadow: inset 0 1px 1px #DDD;
+	color: #444;
+	padding-top: 7px;
+	padding-bottom: 5px;
+}
+
+.button[disabled] {
+	border-color: #F2F2F2;
+	background: #F2F2F2;
+	color: #AAA;
+	box-shadow: none;
+	padding: 6px 12px;
+}
+
+.button.button-primary {
+	background: #08D;
+	border-color: #069;
+	color: white;	
+	box-shadow: inset 0 1px 1px rgba(255, 255, 255, .5);
+}
+
+.button.button-primary:hover {
+	background-color: #07C;
+	border-color: #057;
+}
+
+.button.button-primary:active {
+	background-color: #06A;
+	border-color: #046;
+}
+
+.button.button-primary[disabled] {
+	border-color: #08D;
+	background: #08D;
+	box-shadow: none;
+}

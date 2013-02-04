@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery FormSubmit Demo</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="demo.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="../jquery.formSubmit.js"></script>
+	<script>
+		
+		$(document).ready(function() {
+			
+			$('#test-form').formSubmit({
+				
+				//
+				// Hello, weary traveler!
+				//
+				//   All of these settings are optional, but they've been 
+				//   included to demonstrate some common form-handling tasks.
+				//   Try removing them all and you'll see that the form still 
+				//   shows a loader and feedback without them.
+				//
+				//   Check out ajax.php to see how the responses are being 
+				//   generated.
+				//
+				
+				// Shows the formData that will be submitted; return false 
+				// to prevent the form from being submitted
+				before: function(formData) {
+					if( console ) {
+						console.log('`before` callback:');
+						console.log(formData);
+					}
+				},
+				
+				// Shows the AJAX response when the form is accepted
+				success: function(data) {
+					if( console ) {
+						console.log('`success` callback:');
+						console.log(data);
+					}
+				},
+				
+				// Shows the AJAX response when the form is rejected
+				error: function(data) {
+					if( console ) {
+						console.log('`error` callback:');
+						console.log(data);
+					}
+				},
+				
+				// Shows the AJAX error if one occurs
+				ajaxError: function(textStatus, errorThrown) {
+					if( console ) {
+						console.log('`ajaxError` callback:');
+						console.log(textStatus);
+						console.log(errorThrown);
+					}
+				},
+				
+				// These add and remove a custom class called 'whoops' to the 
+				// parent element of all invalid fields
+				showInvalid: function() {
+					$(this).parent().addClass('whoops');
+				},
+				hideInvalid: function() {
+					$(this).parent().removeClass('whoops');
+				}
+				
+			});
+			
+		});
+		
+	</script>
+	
+	<style>
+		
+		/* Invalid fields */
+		.formSubmit-invalid {
+			background: #FFFCCC !important;
+		}
+		
+		/* A custom invalid field class applied by showInvalids() */
+		.whoops:after {
+			color: red;
+			font-size: 120%;
+			content: '*'
+		}
+		
+		/* Feedback styles */
+		.formSubmit-feedback {
+			border-radius: 4px;
+			padding: 10px;
+			margin: 20px 0;
+		}
+
+		.formSubmit-error {
+			background: #F99;
+		}
+		
+		.formSubmit-success {
+			background: #9F9;
+		}
+		
+		/* Loader styles (only show when form is busy) */
+		FORM .loader {
+			vertical-align: middle;
+			display: none;
+		}
+		
+		FORM.formSubmit-busy .loader {
+			display: inline;
+		}
+		
+	</style>	
+</head>
+<body>
+	
+	<h1>jQuery FormSubmit Demo</h1>
+	<form id="test-form" action="ajax.php" method="post">
+		
+		<!-- Some sample fields so you can see the response -->
+		<label>
+			Name<br />
+			<input type="text" name="name" />
+		</label>
+		
+		<label>
+			Email<br />
+			<input type="email" name="email" />
+		</label>
+		
+		<!-- A select box for fun -->
+		<label>
+			Pick a number
+			<select name="number">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+		</label>
+		
+		<!-- These just let us test the success/error responses -->
+		<fieldset>
+			<legend>When submitted, the request should:</legend>
+			<label>
+				<input type="radio" name="cmd" value="succeed" checked="checked" /> Succeed
+			</label>
+			<label>
+				<input type="radio" name="cmd" value="fail" /> Fail
+			</label>
+		</fieldset>
+		
+		<!-- This is the feedback element...just leave it empty -->
+		<div class="formSubmit-feedback"></div>
+		
+		<button type="submit" class="button">Submit</button>
+		
+		<!-- The loader is styled to be hidden by default. It will automatically 
+		     show when the form is busy -->
+		<img src="loader.gif" class="loader" />
+		
+	</form>
+	
+</body>
+</html>
