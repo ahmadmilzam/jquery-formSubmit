@@ -136,7 +136,7 @@ sets the form's busy state
 
 releases the form back to its original form and behavior
 
-`disable (true|false)`
+`disabled (true|false)`
 
 disables/enables form fields
 

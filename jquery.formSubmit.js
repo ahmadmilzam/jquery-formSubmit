@@ -45,7 +45,7 @@ if(jQuery) (function($) {
 					return $(this);
 				
 				// Sets all the form control's disabled state
-				case 'disable':
+				case 'disabled':
 					$(this).each( function() {
 						var form = $(this);
 						form.find(':input').prop('disabled', data);
