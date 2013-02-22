@@ -6,7 +6,21 @@
  * Dual-licensed under the MIT and GPL Version 2 licenses
  *
  */
+ 
 if(jQuery) (function($) {
+	
+	// Default settings
+	$.formSubmit = {
+		defaults: {
+			before: null,
+			success: null,
+			error: null,
+			hideInvalid: null,
+			showInvalid: null,
+			successClass: '',
+			failClass: ''
+		}
+	};
 	
 	$.extend($.fn, {
 		
@@ -67,13 +81,7 @@ if(jQuery) (function($) {
 				default:
 					if( method !== 'create' ) data = method;
 					
-					data = $.extend(true, {
-						before: null,
-						success: null,
-						error: null,
-						hideInvalid: null,
-						showInvalid: null
-					}, data);
+					data = $.extend(true, {}, $.formSubmit.defaults, data);
 					
 					$(this).each( function() {
 						
@@ -155,10 +163,13 @@ if(jQuery) (function($) {
 			
 			// Hides the feedback
 			function hideFeedback(form) {
+				var data = form.data('formSubmit-data');
 				form.find('.formSubmit-feedback')
 					.hide()
 					.removeClass('formSubmit-error')
 					.removeClass('formSubmit-success')
+					.removeClass(data ? data.errorClass : '')
+					.removeClass(data ? data.successClass : '')
 					.html('');
 			}
 			
@@ -194,15 +205,18 @@ if(jQuery) (function($) {
 			
 			// Shows feedback
 			function showFeedback(form, status, feedback) {
+				var data = form.data('formSubmit-data');
 				if( feedback ) {
 					if( status === 'success' ) {
 						form.find('.formSubmit-feedback')
 							.addClass('formSubmit-success')
+							.addClass(data.successClass)
 							.html(feedback).show();
 					}
 					if( status === 'error' ) {
 						form.find('.formSubmit-feedback')
 							.addClass('formSubmit-error')
+							.addClass(data.errorClass)
 							.html(feedback).show();
 					}
 				}
