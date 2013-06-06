@@ -18,7 +18,7 @@ if(jQuery) (function($) {
 			hideInvalid: null,
 			showInvalid: null,
 			successClass: '',
-			failClass: ''
+			errorClass: ''
 		}
 	};
 	
