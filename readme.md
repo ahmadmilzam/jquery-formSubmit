@@ -22,7 +22,7 @@ properties:
 		{
 			"status": "success",
 			"feedback": "<strong>Success!</strong> It worked!",
-			"invalids": ["fieldName1", "fieldName2", "fieldName3", ...]
+			"invalid": ["fieldName1", "fieldName2", "fieldName3", ...]
 			"data": { [Your JSON data] }
 		}
 
