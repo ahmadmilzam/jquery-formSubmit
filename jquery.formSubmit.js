@@ -17,8 +17,8 @@ if(jQuery) (function($) {
 			error: null,
 			hideInvalid: null,
 			showInvalid: null,
-			successClass: '',
-			errorClass: ''
+			feedbackSuccessClass: '',
+			feedbackErrorClass: ''
 		}
 	};
 	
@@ -168,8 +168,8 @@ if(jQuery) (function($) {
 					.hide()
 					.removeClass('formSubmit-error')
 					.removeClass('formSubmit-success')
-					.removeClass(data ? data.errorClass : '')
-					.removeClass(data ? data.successClass : '')
+					.removeClass(data ? data.feedbackErrorClass : '')
+					.removeClass(data ? data.feedbackSuccessClass : '')
 					.html('');
 			}
 			
@@ -210,13 +210,13 @@ if(jQuery) (function($) {
 					if( status === 'success' ) {
 						form.find('.formSubmit-feedback')
 							.addClass('formSubmit-success')
-							.addClass(data.successClass)
+							.addClass(data.feedbackSuccessClass)
 							.html(feedback).show();
 					}
 					if( status === 'error' ) {
 						form.find('.formSubmit-feedback')
 							.addClass('formSubmit-error')
-							.addClass(data.errorClass)
+							.addClass(data.feedbackErrorClass)
 							.html(feedback).show();
 					}
 				}
