@@ -184,3 +184,7 @@ When fields contain errors, return an `invalid` property containing an array
 of the erroneous field names. A class of `formSubmit-invalid` will be applied 
 to each field in the list.  You can also use the showInvalid/hideInvalid callback 
 to apply additional formatting or behaviors.
+
+## License
+
+Licensed under the MIT license: http://opensource.org/licenses/MIT

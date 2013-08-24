@@ -3,7 +3,7 @@
  *
  * Copyright Cory LaViska for A Beautiful Site, LLC. (http://www.abeautifulsite.net/)
  *
- * Dual-licensed under the MIT and GPL Version 2 licenses
+ * Licensed under the MIT license: http://opensource.org/licenses/MIT
  *
  */
  
