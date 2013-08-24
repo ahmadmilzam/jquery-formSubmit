@@ -144,6 +144,10 @@ disables/enables form fields
 
 resets the form to its original state
 
+`show-feedback`
+
+programmatically shows feedback; pass an object: { status: [success|error], feedback: 'what to say'}
+
 
 ## Tips
 

@@ -66,6 +66,14 @@ if(jQuery) (function($) {
 					});
 					return $(this);
 				
+				// Programmatically show feedback
+				case 'hide-feedback':
+					$(this).each( function() {
+						var form = $(this);
+						hideFeedback(form, data.status, data.feedback);
+					});
+					return $(this);	
+				
 				// Resets the form, clears invalids, and hides feedback
 				case 'reset':
 					$(this).each( function() {
@@ -75,6 +83,14 @@ if(jQuery) (function($) {
 						form.get(0).reset();
 					});
 					return $(this);
+				
+				// Programmatically show feedback
+				case 'show-feedback':
+					$(this).each( function() {
+						var form = $(this);
+						showFeedback(form, data.status, data.feedback);
+					});
+					return $(this);	
 				
 				// Initializes the form
 				case 'create':
@@ -192,7 +208,7 @@ if(jQuery) (function($) {
 			
 			// Shows form field errors and triggers the showError callback
 			function showInvalid(form, invalid) {
-				var data = form.data('formSubmit-data');
+				var data = form.data('formSubmit-data') || $.formSubmit.defaults;
 				if( invalid ) {
 					for( i in invalid ) {
 						form.find('[name=' + invalid[i] + ']').each( function() {
@@ -205,7 +221,7 @@ if(jQuery) (function($) {
 			
 			// Shows feedback
 			function showFeedback(form, status, feedback) {
-				var data = form.data('formSubmit-data');
+				var data = form.data('formSubmit-data') || $.formSubmit.defaults;
 				if( feedback ) {
 					if( status === 'success' ) {
 						form.find('.formSubmit-feedback')
