@@ -6,7 +6,7 @@
  * Licensed under the MIT license: http://opensource.org/licenses/MIT
  *
  */
- 
+
 if(jQuery) (function($) {
 	
 	// Default settings
