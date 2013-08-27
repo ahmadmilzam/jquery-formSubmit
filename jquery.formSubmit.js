@@ -70,7 +70,7 @@ if(jQuery) (function($) {
 				case 'hide-feedback':
 					$(this).each( function() {
 						var form = $(this);
-						hideFeedback(form, data.status, data.feedback);
+						hideFeedback(form);
 					});
 					return $(this);	
 				
@@ -93,7 +93,6 @@ if(jQuery) (function($) {
 					return $(this);	
 				
 				// Initializes the form
-				case 'create':
 				default:
 					if( method !== 'create' ) data = method;
 					
@@ -125,7 +124,7 @@ if(jQuery) (function($) {
 									type: form.attr('method'),
 									data: form.serialize(),
 									dataType: 'json',
-									beforeSend: function(jqXHR) {
+									beforeSend: function() {
 										if( data.before ) {
 											// You can cancel the submission by returning false in this callback
 											if( data.before.call(form, serializeForm(form)) === false ) return false;
@@ -138,9 +137,6 @@ if(jQuery) (function($) {
 									if( data.ajaxError ) data.ajaxError.call(form, textStatus, errorThrown);
 								})
 								.always(function(response) {
-									// Executes after the request has completed (even if it fails)
-									var i;
-									
 									// Update form
 									form
 										.removeData('formSubmit-xhr')
@@ -191,30 +187,34 @@ if(jQuery) (function($) {
 			
 			// Serializes form data into an object
 			function serializeForm(form) {
-			    var o = {};
-			    var a = form.serializeArray();
-			    $.each(a, function() {
-			        if( o[this.name] !== undefined ) {
-			            if( !o[this.name].push ) {
-			                o[this.name] = [o[this.name]];
-			            }
-			            o[this.name].push(this.value || '');
-			        } else {
-			            o[this.name] = this.value || '';
-			        }
-			    });
-			    return o;
+				var o = {};
+				var a = form.serializeArray();
+				$.each(a, function() {
+					if( o[this.name] !== undefined ) {
+						if( !o[this.name].push ) {
+							o[this.name] = [o[this.name]];
+						}
+						o[this.name].push(this.value || '');
+					} else {
+						o[this.name] = this.value || '';
+					}
+				});
+				return o;
 			}
 			
 			// Shows form field errors and triggers the showError callback
 			function showInvalid(form, invalid) {
-				var data = form.data('formSubmit-data') || $.formSubmit.defaults;
+				var i,
+					data = form.data('formSubmit-data') || $.formSubmit.defaults;
+				
+				function show() {
+					$(this).addClass('formSubmit-invalid');
+					if( data.showInvalid ) data.showInvalid.call(this);
+				}
+				
 				if( invalid ) {
 					for( i in invalid ) {
-						form.find('[name=' + invalid[i] + ']').each( function() {
-							$(this).addClass('formSubmit-invalid');
-							if( data.showInvalid ) data.showInvalid.call(this);
-						});
+						form.find('[name=' + invalid[i] + ']').each(show);
 					}
 				}
 			}
