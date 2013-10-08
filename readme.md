@@ -66,11 +66,9 @@ set the form up to display feedback.)
 
 	$('FORM').formSubmit({
 		
-		before: function(formData) {
-			// executes code before the form gets submitted; return false 
-			// here to prevent the form from being submitted; formData will 
-			// be an object containing all the fields that will be submitted 
-			// to the form
+		before: function() {
+			// executes code before the form gets serialized and submitted;
+			// Returning false here will prevent the form from being submitted.
 		},
 		
 		success: function(data) {

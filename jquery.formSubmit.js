@@ -6,7 +6,7 @@
  * Licensed under the MIT license: http://opensource.org/licenses/MIT
  *
  */
-
+ 
 if(jQuery) (function($) {
 	
 	// Default settings
@@ -118,6 +118,12 @@ if(jQuery) (function($) {
 								hideInvalid(form);
 								hideFeedback(form);
 								
+								// Handle before callback
+								if( data.before ) {
+									// You can cancel the submission by returning false in this callback
+									if( data.before.call(form) === false ) return;
+								}
+								
 								// Submit it
 								xhr = $.ajax({
 									url: form.attr('action'),
@@ -125,10 +131,6 @@ if(jQuery) (function($) {
 									data: form.serialize(),
 									dataType: 'json',
 									beforeSend: function() {
-										if( data.before ) {
-											// You can cancel the submission by returning false in this callback
-											if( data.before.call(form, serializeForm(form)) === false ) return false;
-										}
 										form.formSubmit('busy', true);
 									}
 								})
@@ -183,23 +185,6 @@ if(jQuery) (function($) {
 					.removeClass(data ? data.feedbackErrorClass : '')
 					.removeClass(data ? data.feedbackSuccessClass : '')
 					.html('');
-			}
-			
-			// Serializes form data into an object
-			function serializeForm(form) {
-				var o = {};
-				var a = form.serializeArray();
-				$.each(a, function() {
-					if( o[this.name] !== undefined ) {
-						if( !o[this.name].push ) {
-							o[this.name] = [o[this.name]];
-						}
-						o[this.name].push(this.value || '');
-					} else {
-						o[this.name] = this.value || '';
-					}
-				});
-				return o;
 			}
 			
 			// Shows form field errors and triggers the showError callback

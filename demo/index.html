@@ -26,10 +26,9 @@
 				
 				// Shows the formData that will be submitted; return false 
 				// to prevent the form from being submitted
-				before: function(formData) {
+				before: function() {
 					if( console ) {
-						console.log('`before` callback:');
-						console.log(formData);
+						console.log('`before` callback');
 					}
 				},
 				
