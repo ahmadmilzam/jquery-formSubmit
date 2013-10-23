@@ -134,7 +134,7 @@ if(jQuery) (function($) {
 										form.formSubmit('busy', true);
 									}
 								})
-								.error(function(jqXHR, textStatus, errorThrown) {
+								.fail(function(jqXHR, textStatus, errorThrown) {
 									// Handle AJAX errors
 									if( data.ajaxError ) data.ajaxError.call(form, textStatus, errorThrown);
 								})
